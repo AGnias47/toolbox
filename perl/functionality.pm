@@ -62,4 +62,29 @@ sub pattern_match
 }
 
 
+=item bash_command_ls
+Shows using a bash command through perl and capturing the output
+=cut
+sub bash_command_ls
+{
+	my $ls = `ls`;
+	print($ls);
+}
+
+
+=item hashes
+Show examples of using hashes
+=cut
+sub hashes
+{
+	my %simple;
+	$simple{1} = "A";
+	my %complex = (
+		1 => "A",
+		2 => "B",
+		3 => "C",
+	);
+}
+
+
 $true;
