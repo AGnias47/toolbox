@@ -87,4 +87,28 @@ sub hashes
 }
 
 
+=item read_file_as_string
+Reads an entire file as a string
+=cut
+sub read_file_as_string
+{
+	my $fname = $_[0];
+	open my $F, '<', $fname or die "Read of $fname failed\n";
+	my $fstring = do { local $/; <$F> };
+	$fstring = strip_whitespace($fstring);
+	return $fstring;
+}
+
+
+=item strip_whitespace
+Strips whitespace on a string
+=cut
+sub string_whitespace
+{
+	my $string = $_[0];
+	$string =~ s/^\s+|\s+$//g;
+	return $string;
+}
+
+
 $true;
