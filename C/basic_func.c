@@ -4,7 +4,7 @@
                   and C syntax"
 
    Libraries Used:
-                    stdio.h - printf and scanf
+                  stdio.h - printf and scanf
 
    Inputs: User input required for some functions
    Return: None; printf statements for each function
@@ -18,10 +18,10 @@
 
 
 /*
-	Prints and int, char, and string
+   Prints and int, char, and string
 
-	@param: None
-	@return: None
+   @param: None
+   @return: None
 */
 void printing()
 {
@@ -33,10 +33,10 @@ void printing()
 
 
 /*
-	Examples of how iterators function
+   Examples of how iterators function
 
-	@param: None
-	@return: None
+   @param: None
+   @return: None
 */
 void iterators()
 {
@@ -46,10 +46,10 @@ void iterators()
 
 
 /*
-	Reads in and prints out an array
+   Reads in and prints out an array
 
-	@param: None; requires user input
-	@return: None
+   @param: None; requires user input
+   @return: None
 */
 void read_array()
 {
@@ -64,11 +64,11 @@ void read_array()
 
 
 /*
-	Swaps two integer variables
+   Swaps two integer variables
 
-	@param a: reference to int
-	@param b: reference to int
-	@return: None; mutates each int
+   @param a: reference to int
+   @param b: reference to int
+   @return: None; mutates each int
 */
 void swap(int *a, int *b)
 {
@@ -80,13 +80,13 @@ void swap(int *a, int *b)
 
 int main()
 {
-	printf("---printing---\n");
+   printf("---printing---\n");
    printing();
-	printf("---iterators---\n");
+   printf("---iterators---\n");
    iterators();
-	printf("---read_array---\n");
+   printf("---read_array---\n");
    read_array();
-	printf("---swap---\n");
+   printf("---swap---\n");
    int a = 42;
    int b = 47;
    printf("a is %d and b is %d\n",a,b);
