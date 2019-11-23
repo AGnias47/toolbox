@@ -6,11 +6,15 @@
 #   Python 3.7.3
 #   Vim 8.0 [tabstop=3]
 
-from flask import Flask
+from flask import Flask, jsonify
 # contains the website
 app = Flask(__name__)
 
-# If the user goes to WEBPAGE/, run this
+def read_payload(fname):
+	with open(fname, 'r') as F:
+		content = F.read()
+	return content
+
 @app.route('/')
 def hello_world():
 	return "Welcome to the homepage!"
@@ -18,6 +22,11 @@ def hello_world():
 @app.route("/annika")
 def annika():
 	return "Annika is a dog!"
+
+@app.route("/api/v1/lorem", methods=["GET"])
+def api_lorem():
+	return read_payload("api_sample_content/lorem")
+	
 
 if __name__ == "__main__":
 	app.run()
