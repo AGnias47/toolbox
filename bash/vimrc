@@ -1,0 +1,29 @@
+"This is a comment
+"
+".vimrc - a basic file for newbies to start with
+"
+
+:filetype on
+:au FileType c,cpp,java set cindent
+
+"set background=dark   
+
+set nocompatible
+set tabstop=3
+set softtabstop=3
+set shiftwidth=3
+set showmode
+set showmatch
+set textwidth=120
+set pastetoggle=<f2>
+set backspace=2
+set hlsearch
+set ruler
+if &t_Co > 1
+	syntax enable
+endif
+set wrap
+
+autocmd bufnewfile *.py so ~/templates/t.py
+autocmd bufnewfile *.bash so ~/templates/t.bash
+autocmd bufnewfile *.java so ~/templates/t.java
