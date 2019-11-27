@@ -5,8 +5,8 @@
 
    Libraries Used:
                   stdio.h - printf and scanf
-						stdlib.h - free and malloc
-						time.h - timer
+                  stdlib.h - free and malloc
+                  time.h - timer
 
    Inputs: User input required for some functions
    Return: None; printf statements for each function
@@ -88,52 +88,90 @@ void swap(int *a, int *b)
 
 
 /*
-	Shows how an array can function as a pointer
+   Shows how an array can function as a pointer
 
-	@params: none
-	@return: None
+   @params: none
+   @return: None
 */
 void array_as_pointer()
 {
-	int A[5];
-	int *p;
-	*A = 12;
-	*(A+3) = 5;
-	for (p=A; p<A+(sizeof(A)/sizeof(A[0])); p++) printf("%d\n", *p);
+   int A[5];
+   int *p;
+   *A = 12;
+   *(A+3) = 5;
+   for (p=A; p<A+(sizeof(A)/sizeof(A[0])); p++) printf("%d\n", *p);
 }
 
 
 /*
-	Returns a reversed array of ints using a for loop
-	@param A: array to reverse (not mutated)
-	@param size: size of array
-	@return R: reversed array
+   Returns a reversed array of ints using a for loop
+   @param A: array to reverse (not mutated)
+   @param size: size of array
+   @return R: reversed array
 */
 int * reverse_array(int * A, int size)
 {
-	if (A == NULL) return A;
-	int * R = malloc(sizeof(int) * size);
-	for (int i=size-1, j=0; i >= 0; i--, j++)
-	{
-		R[j] = A[i];
-	}
-	return R;
+   if (A == NULL) return A;
+   int * R = malloc(sizeof(int) * size);
+   for (int i=size-1, j=0; i >= 0; i--, j++)
+   {
+      R[j] = A[i];
+   }
+   return R;
 }
 
 /*
-	Shows timer functionality
-	@params: None
-	@return: None
+   Shows timer functionality
+   @params: None
+   @return: None
 */
 void timer()
 {
-	clock_t before;
-	double elapsed;
-	before = clock();
-	int twentyfive = 5*5;
-	elapsed = clock() - before;
-	printf("Program took %.3f seconds to run\n",
-			elapsed/CLOCKS_PER_SEC);
+   clock_t before;
+   double elapsed;
+   before = clock();
+   int twentyfive = 5*5;
+   elapsed = clock() - before;
+   /*printf("Program took %.3f seconds to run\n",
+         elapsed/CLOCKS_PER_SEC);*/
+}
+
+
+/*
+   Partition helper function for quicksort
+   @params: Array of ints, low index, high index
+   @return: Partition index
+*/
+int partition(int A[], int low, int high)
+{
+   int start = low;
+   int pivot = A[low];
+   for (int i = low; i <= high; i++)
+   {
+      if (A[i] < pivot)
+      {
+         start++;
+         swap(&A[start], &A[i]);
+      }
+   }
+   swap(&A[start], &A[low]);
+   return start;
+}
+
+
+/*
+   Sorts an array in place
+   @params: Array of ints, low index, high index
+   @return: None; array is mutated by sort function
+*/
+void quicksort(int A[], int low, int high)
+{
+   if (low < high)
+   {
+      int p = partition(A, low, high);
+      quicksort(A, low, p-1);
+      quicksort(A, p+1, high);
+   }
 }
 
 
@@ -152,12 +190,17 @@ int main()
    printf("Running swap function\n");
    swap(&a,&b);
    printf("a is now %d and b is now %d\n",a,b);
-	printf("---Arrays as pointers---\n");
+   printf("---Arrays as pointers---\n");
    array_as_pointer();
-	int rev[] = {21, 32, 43};
-	int *B = reverse_array(rev, 3);
+   int rev[] = {21, 32, 43};
+   int *B = reverse_array(rev, 3);
    for (int i=0; i < 3; i++) printf("%d\n", B[i]);
-	timer();
+   printf("---Quicksort---\n");
+   int sort_array[] = {81, 897, 84, 17, 4686, 15};
+   quicksort(sort_array, 0, 5);
+   for (int i=0; i < 6; i++) printf("%d, ", sort_array[i]);
+   printf("\n");
+   timer();
    return 0;
 }
 
