@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "football_player.h"
 
 
 /*pseudo bool type*/
@@ -232,6 +233,15 @@ int main()
    printf("%c\n", d);
    char e = switch_int_to_char(15);
    printf("%c\n", e);
+   printf("---Football Player Struct---\n");
+   struct Athlete *carson = create_athlete_no_qb("Carson Wentz", "QB", 11, 27);
+   struct Athlete *darren = create_athlete("Darren Sproles", "RB", 43, 2, carson);
+   printf("Name: %s\n", darren->name);
+   printf("Position: %s\n", darren->position);
+   printf("Number: %d\n", darren->number);
+   printf("Touchdowns: %d\n", darren->touchdowns);
+   printf("Quarterback: %s\n", darren->quarterback->name);
+   destroy_athlete(darren);
    timer();
    return 0;
 }
