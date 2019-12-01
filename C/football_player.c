@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "football_player.h"
+/* Note: Function descriptions are included in header file */
 
 
 extern struct Athlete *create_athlete(char *_name, char *_position, int _number, int _touchdowns, struct Athlete *qb)
@@ -12,6 +13,7 @@ extern struct Athlete *create_athlete(char *_name, char *_position, int _number,
    ath->quarterback = qb;
    return ath;
 }
+
 
 extern struct Athlete *create_athlete_no_qb(char *_name, char *_position, int _number, int _touchdowns)
 {

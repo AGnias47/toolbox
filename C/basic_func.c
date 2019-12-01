@@ -133,8 +133,8 @@ void timer()
    before = clock();
    int twentyfive = 5*5;
    elapsed = clock() - before;
-   /*printf("Program took %.3f seconds to run\n",
-         elapsed/CLOCKS_PER_SEC);*/
+   printf("Function took %.3f seconds to run\n",
+         elapsed/CLOCKS_PER_SEC);
 }
 
 
@@ -176,6 +176,11 @@ void quicksort(int A[], int low, int high)
 }
 
 
+/*
+   Converts an int to a char using a switch statement
+   @params: int
+   @return: char
+*/
 char switch_int_to_char(int n)
 {
    char c;
@@ -205,35 +210,41 @@ int main()
 {
    printf("---printing---\n");
    printing();
-   printf("---iterators---\n");
+
+   printf("\n---iterators---\n");
    iterators();
-   /*printf("---read_array---\n");
+   /*printf("\n---read_array---\n");
    read_array();*/
-   printf("---swap---\n");
+
+   printf("\n---swap---\n");
    int a = 42;
    int b = 47;
    printf("a is %d and b is %d\n",a,b);
    printf("Running swap function\n");
    swap(&a,&b);
    printf("a is now %d and b is now %d\n",a,b);
-   printf("---Arrays as pointers---\n");
+
+   printf("\n---Arrays as pointers---\n");
    array_as_pointer();
    int rev[] = {21, 32, 43};
    int *B = reverse_array(rev, 3);
    for (int i=0; i < 3; i++) printf("%d\n", B[i]);
-   printf("---Quicksort---\n");
+
+   printf("\n---Quicksort---\n");
    int sort_array[] = {81, 897, 84, 17, 4686, 15};
    quicksort(sort_array, 0, 5);
    for (int i=0; i < 6; i++) printf("%d, ", sort_array[i]);
    printf("\n");
-   printf("---Switch Statement---\n");
+
+   printf("\n---Switch Statement---\n");
    char aa = switch_int_to_char(2);
    printf("%c\n", aa);
    char d = switch_int_to_char(10);
    printf("%c\n", d);
    char e = switch_int_to_char(15);
    printf("%c\n", e);
-   printf("---Football Player Struct---\n");
+
+   printf("\n---Football Player Struct---\n");
    struct Athlete *carson = create_athlete_no_qb("Carson Wentz", "QB", 11, 27);
    struct Athlete *darren = create_athlete("Darren Sproles", "RB", 43, 2, carson);
    printf("Name: %s\n", darren->name);
@@ -242,6 +253,9 @@ int main()
    printf("Touchdowns: %d\n", darren->touchdowns);
    printf("Quarterback: %s\n", darren->quarterback->name);
    destroy_athlete(darren);
+   destroy_athlete(carson);
+
+   printf("\n---Timer---\n");
    timer();
    return 0;
 }

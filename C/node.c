@@ -17,6 +17,7 @@
 
 #define DEBUG
 
+
 /*
    Defines a node with two node children.
 */
@@ -28,6 +29,16 @@ typedef struct node
 } node;
 
 
+/*
+   Sorts node data in preorder
+   @param n:      node, root to sort from
+   @param pre:    array of ints to store node data in preorder;
+                  mutated.
+   @param index:  int to store index position when function is 
+                  used recursively; should be initialized as 0
+   @return index: int to store index; not used functionally, just
+                  stores the index for recursive use of function
+*/
 int preorder(node * n, int * pre, int index)
 {
    if (n == NULL)
@@ -50,6 +61,12 @@ int preorder(node * n, int * pre, int index)
    return index;
 }
 
+
+/*
+   Counts number of populated nodes
+   @param n: node acting as root from where to start count
+   @return:  number of populated nodes
+*/
 int populated_nodes(node * n)
 {
    if (n == NULL)
@@ -82,7 +99,6 @@ int main()
    {
       printf("%d\n", *a);
    }
-
 
    free(head);
 }
