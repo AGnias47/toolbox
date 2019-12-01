@@ -175,6 +175,31 @@ void quicksort(int A[], int low, int high)
 }
 
 
+char switch_int_to_char(int n)
+{
+   char c;
+   switch(n)
+   {
+      case 1: case 2: case 3:
+         c = 'A';
+         break;
+      case 4: case  5: case 6:
+         c = 'B';
+         break;
+      case 7: case 8: case 9:
+         c = 'C';
+         break;
+      case 10:
+         c = 'D';
+         break;
+      default:
+         c = 'E';
+         break;
+   }
+   return c;
+}
+
+
 int main()
 {
    printf("---printing---\n");
@@ -200,8 +225,14 @@ int main()
    quicksort(sort_array, 0, 5);
    for (int i=0; i < 6; i++) printf("%d, ", sort_array[i]);
    printf("\n");
+   printf("---Switch Statement---\n");
+   char aa = switch_int_to_char(2);
+   printf("%c\n", aa);
+   char d = switch_int_to_char(10);
+   printf("%c\n", d);
+   char e = switch_int_to_char(15);
+   printf("%c\n", e);
    timer();
    return 0;
 }
-
 
