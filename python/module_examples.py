@@ -12,7 +12,7 @@ import tqdm
 def tqdm_usage():
     """Example of using tqdm progress bar"""
     for i in tqdm.tqdm(range(9999999)):
-        a = 1
+        pass
 
 
 if __name__ == "__main__":
