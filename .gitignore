@@ -4,3 +4,4 @@
 *.o
 main
 node
+__pycache__
