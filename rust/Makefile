@@ -6,4 +6,7 @@ compile:
 run:
 	./main
 
-all: compile run
+clean:
+	rm main
+
+all: compile run clean
