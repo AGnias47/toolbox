@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 #
 #   A. Gnias
 #
@@ -7,6 +7,7 @@
 #   Vim 8.0
 
 import tqdm
+import functools
 
 
 def tqdm_usage():
@@ -15,5 +16,14 @@ def tqdm_usage():
         pass
 
 
+@functools.lru_cache()  # Parentheses not needed in Python 3.8
+def fibonacci(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fibonacci(n - 2) + fibonacci(n - 1)
+
+
 if __name__ == "__main__":
     tqdm_usage()
+    print(fibonacci(100))
