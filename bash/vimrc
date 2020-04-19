@@ -1,12 +1,7 @@
-"This is a comment
-"
-".vimrc - a basic file for newbies to start with
-"
-
 :filetype on
-:au FileType c,cpp,java set cindent
 
-"set background=dark   
+"Turn off for light backgrounds
+set background=dark   
 
 set nocompatible
 set tabstop=3
@@ -24,6 +19,7 @@ if &t_Co > 1
 endif
 set wrap
 
+"Only include if these template files exist
 autocmd bufnewfile *.py so ~/templates/t.py
 autocmd bufnewfile *.bash so ~/templates/t.bash
 autocmd bufnewfile *.java so ~/templates/t.java

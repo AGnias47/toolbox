@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ -f ${1} ] ; then
-   expand -t 3 ${1} > __tmp__
+   expand -t 4 ${1} > __tmp__
    cp __tmp__ ${1}
    rm __tmp__
 else
