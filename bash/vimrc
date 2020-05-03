@@ -1,25 +1,51 @@
+" Don't make efforts to make Vim VI-compatible
+set nocompatible
+
+" Turn on filetype detection
 :filetype on
 
-"Turn off for light backgrounds
-set background=dark   
-
-set nocompatible
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
-set showmode
-set showmatch
-set textwidth=120
-set pastetoggle=<f2>
-set backspace=2
-set hlsearch
-set ruler
+" Turn on syntax highlighting if more than 1 color is available
 if &t_Co > 1
 	syntax enable
 endif
+
+" Turn on auto-indentation for C-syntax languages
+:au FileType c,cpp,java set cindent
+
+" Show matching brackets
+set showmatch
+
+" Set one depending on terminal type
+set background=dark
+" set background=light
+
+" Makes backspace behave as expected
+set backspace=2
+
+"Set the tab key to 4 spaces
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+
+" Turn on visual wrapping
 set wrap
 
-"Only include if these template files exist
+"Wrap at 120 characters
+set textwidth=120
+
+" Turn on highlighting for searching
+set hlsearch
+
+" Show cursor line and column position
+set ruler
+
+" Hit F2 to enter paste mode
+set pastetoggle=<f2>
+
+" When opening a new file with these extensions, use a pre-defined template saved in ~/templates/ folder
 autocmd bufnewfile *.py so ~/templates/t.py
 autocmd bufnewfile *.bash so ~/templates/t.bash
 autocmd bufnewfile *.java so ~/templates/t.java
+
