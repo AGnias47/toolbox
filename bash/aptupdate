@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 apt update
-apt upgrade
-apt autoremove
+apt -y upgrade
+apt -y autoremove
