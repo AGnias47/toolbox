@@ -13,3 +13,4 @@ fn main()
     let f = basic_functionality::is_prime(d);
     println!("{}, {}", e, f);   
 }
+
