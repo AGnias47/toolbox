@@ -1,0 +1,12 @@
+name: requests
+version: "0.1.0"
+author: Andy Gnias <AGnias47@gmail.com>
+about: Runs a GET request
+args:
+    - url:
+        short: u
+        long: url
+        value_name: URL
+        help: URL to send GET request
+        takes_value: true
+
