@@ -16,7 +16,7 @@ def tqdm_usage():
         pass
 
 
-@functools.lru_cache()  # Parentheses not needed in Python 3.8
+@functools.lru_cache
 def fibonacci(n):
     if n == 0 or n == 1:
         return n
