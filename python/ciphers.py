@@ -1,15 +1,24 @@
 #!/usr/bin/env python3
 
 """
+Cryptography - Ciphers
+======================
+
 Notes from Udemy course Learn Cryptography Basics in Python and Java by Balazs Holczer.
 
-Cesar Cipher - Assigns ints to each letter; key encrypts by moving string n spaces, where n is the integer encoding of
+Cesar Cipher
+------------
+Assigns ints to each letter; key encrypts by moving string n spaces, where n is the integer encoding of
 the key. Implementation is imperfect but prevents us from having to create a full dict mapping of all characters. Works
 for standard english characters, which is the main purpose of the cipher.
 
-Vigenere Cipher - Same as Cesar except the key is a word that is repeated over the text
+Vigenere Cipher
+---------------
 
-Kasiski Algorithm - Used to crack Vigenere Cipher. Find a repeated substring to determine the length 
+Same as Cesar except the key is a word that is repeated over the text
+
+### Kasiski Algorithm 
+Used to crack Vigenere Cipher. Find a repeated substring to determine the length 
 of the key and then do frequency analysis.
 
 Assume that the length of the key is the factor with the highest count, ex. considering this table
@@ -26,7 +35,9 @@ For frequency analysis, we would then use every 5th letter for our frequency ana
 
 This method utilizes information leaking.
 
-One Time Pad method uses as many letters in the key as the length of the plain text to prevent information leaking, so
+One Time Pad
+------------
+Uses as many letters in the key as the length of the plain text to prevent information leaking, so
 long as a randomized key is generated. Using an English sentance for the key can still be vulnerable to information
 leaking.
 
@@ -41,6 +52,8 @@ OTP is an example of perfect secrecy (message space == cipher space). Ex. brute 
 letter key can be decoded by a third party as any five letter word.
 
 Takes plaintext and converts into binary, takes key and converts into binary, uses XOR for encryption and decryption.
+
+### Random Number Generation
 
 Should use a method of generating random numbers with true randomness or a good algo. Computers are deterministic, so
 certain input will always give certain output that can be hacked.
@@ -65,9 +78,7 @@ Data Encryption Standard
 Commercial industry had need for encryption, inspired use in the 70s. Cannot be cracked with frequency analysis. Key
 length of 56 bits is insecure by today's standards, but influenced the field.
 
-Block cipher - plaintext converted to ciphertext in blocks
-
-
+Block cipher method, in which plaintext converted to ciphertext in blocks.
 """
 
 
