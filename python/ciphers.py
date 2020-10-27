@@ -79,6 +79,13 @@ Commercial industry had need for encryption, inspired use in the 70s. Cannot be 
 length of 56 bits is insecure by today's standards, but influenced the field.
 
 Block cipher method, in which plaintext converted to ciphertext in blocks.
+
+Uses Feistel-structure
+1. Split plaintext into 64-bit blocks
+2. Iterate over 16 rounds with a 1 block as input
+3. Each round uses a separate key
+
+Key is 64 bits but only 56 bits are used. Transforms 64-bit plaintext into 64-bit ciphertext.
 """
 
 
