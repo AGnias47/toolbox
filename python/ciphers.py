@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 """
+Notes from Udemy course Learn Cryptography Basics in Python and Java by Balazs Holczer.
+
 Cesar Cipher - Assigns ints to each letter; key encrypts by moving string n spaces, where n is the integer encoding of
 the key. Implementation is imperfect but prevents us from having to create a full dict mapping of all characters. Works
 for standard english characters, which is the main purpose of the cipher.
@@ -30,7 +32,13 @@ leaking.
 
 One time pad uses XOR, so letters are first translated into the binary number of their ASCII value. XOR operations can
 be used easily for encryption and decryption, as the inverse is the function itself. XOR gives 0 or 1 with 50%
-probability.
+probability. XOR theoretically is extremely difficult to break, but presents the question of, "If we can securely
+transfer a key, why not securely transfer the message?". One possible solution is to provide an array of OTP keys that
+are tracked by each party and the same key in the batch is used for the same message. This would only require one
+transfer, but requires accurate tracking of the stack of keys.
+
+OTP is an example of perfect secrecy (message space == cipher space). Ex. brute force for a five letter word with a five
+letter key can be decoded by a third party as any five letter word.
 
 Takes plaintext and converts into binary, takes key and converts into binary, uses XOR for encryption and decryption.
 
@@ -51,6 +59,15 @@ Linear Congruential Generator
 Xn+1 = (aXn + c) % m
 
 Seed is X0
+
+Data Encryption Standard
+------------------------
+Commercial industry had need for encryption, inspired use in the 70s. Cannot be cracked with frequency analysis. Key
+length of 56 bits is insecure by today's standards, but influenced the field.
+
+Block cipher - plaintext converted to ciphertext in blocks
+
+
 """
 
 
