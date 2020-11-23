@@ -39,5 +39,4 @@ if __name__ == "__main__":
     try:
         print(fermat(int(sys.argv[1])))
     except IndexError:
-        pass 
-
+        pass
