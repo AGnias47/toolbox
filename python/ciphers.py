@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 
 """
-Cesar Cipher - Assigns ints to each letter; key encrypts by moving string n spaces, where n is the integer encoding of
+Cryptography - Ciphers
+======================
+
+Notes from Udemy course Learn Cryptography Basics in Python and Java by Balazs Holczer.
+
+Cesar Cipher
+------------
+Assigns ints to each letter; key encrypts by moving string n spaces, where n is the integer encoding of
 the key. Implementation is imperfect but prevents us from having to create a full dict mapping of all characters. Works
 for standard english characters, which is the main purpose of the cipher.
 
-Vigenere Cipher - Same as Cesar except the key is a word that is repeated over the text
+Vigenere Cipher
+---------------
 
-Kasiski Algorithm - Used to crack Vigenere Cipher. Find a repeated substring to determine the length 
+Same as Cesar except the key is a word that is repeated over the text
+
+### Kasiski Algorithm 
+Used to crack Vigenere Cipher. Find a repeated substring to determine the length 
 of the key and then do frequency analysis.
 
 Assume that the length of the key is the factor with the highest count, ex. considering this table
@@ -24,15 +35,25 @@ For frequency analysis, we would then use every 5th letter for our frequency ana
 
 This method utilizes information leaking.
 
-One Time Pad method uses as many letters in the key as the length of the plain text to prevent information leaking, so
+One Time Pad
+------------
+Uses as many letters in the key as the length of the plain text to prevent information leaking, so
 long as a randomized key is generated. Using an English sentance for the key can still be vulnerable to information
 leaking.
 
 One time pad uses XOR, so letters are first translated into the binary number of their ASCII value. XOR operations can
 be used easily for encryption and decryption, as the inverse is the function itself. XOR gives 0 or 1 with 50%
-probability.
+probability. XOR theoretically is extremely difficult to break, but presents the question of, "If we can securely
+transfer a key, why not securely transfer the message?". One possible solution is to provide an array of OTP keys that
+are tracked by each party and the same key in the batch is used for the same message. This would only require one
+transfer, but requires accurate tracking of the stack of keys.
+
+OTP is an example of perfect secrecy (message space == cipher space). Ex. brute force for a five letter word with a five
+letter key can be decoded by a third party as any five letter word.
 
 Takes plaintext and converts into binary, takes key and converts into binary, uses XOR for encryption and decryption.
+
+### Random Number Generation
 
 Should use a method of generating random numbers with true randomness or a good algo. Computers are deterministic, so
 certain input will always give certain output that can be hacked.
@@ -52,8 +73,22 @@ Xn+1 = (aXn + c) % m
 
 Seed is X0
 
+Data Encryption Standard
+------------------------
+Commercial industry had need for encryption, inspired use in the 70s. Cannot be cracked with frequency analysis. Key
+length of 56 bits is insecure by today's standards, but influenced the field.
+
+Block cipher method, in which plaintext converted to ciphertext in blocks.
+
+Uses Feistel-structure
+1. Split plaintext into 64-bit blocks
+2. Iterate over 16 rounds with a 1 block as input
+3. Each round uses a separate key
+
+Key is 64 bits but only 56 bits are used. Transforms 64-bit plaintext into 64-bit ciphertext.
 
 Diffie-Hellman Key Exchange
+---------------------------
 
 Finding factors is extremely hard. Using prime numbers makes factorization practically impossible. Use large prime numbers.
 
@@ -61,7 +96,7 @@ Main disadvantage of private key system is that private key must be exchanged. D
 public channel.
 Information not shared, not used for encryption or decryption, just sharing keys.
 
-Steps
+### Steps
 Generate hue prime number n, g must be primative root of n. Primitive root - g^1 to n gives all numbers in that range as a mod of n. ex. n=11, g=8.
 Algo
 Sender generates n and g, sends those to receiver
@@ -73,10 +108,11 @@ Sender: k2^x mod n = (g^y mod n)^x mod n = g^xy mod n
 Receiver: k1^y mod n = (g^x mod n)^y mod n = g^yx mod n
 Using primitive root ensures we have the maximum number of keys, prevents brute force attacks
 
-Cracking
+### Cracking
 Relies on there being no efficient way to calculate the discrete log
 Trapdoor function - easy to calculate in one direction, difficult to inverse
 Man in the middle - attacker has k1, sends m1 to receiver, attacker gets k2, sends m2 to sender. Can be circumvented with SHA256 hashes. If tampered with, hashes will be different.
+
 """
 
 
