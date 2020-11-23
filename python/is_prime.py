@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 from random import randint
 
 
@@ -35,3 +36,8 @@ if __name__ == "__main__":
     assert fermat(7879, 5) == True
     assert fermat(63, 7) == False
     assert fermat(12959) == True
+    try:
+        print(fermat(int(sys.argv[1])))
+    except IndexError:
+        pass 
+
