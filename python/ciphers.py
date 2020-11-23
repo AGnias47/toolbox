@@ -51,6 +51,32 @@ Linear Congruential Generator
 Xn+1 = (aXn + c) % m
 
 Seed is X0
+
+
+Diffie-Hellman Key Exchange
+
+Finding factors is extremely hard. Using prime numbers makes factorization practically impossible. Use large prime numbers.
+
+Main disadvantage of private key system is that private key must be exchanged. DH can exchange private keys over a
+public channel.
+Information not shared, not used for encryption or decryption, just sharing keys.
+
+Steps
+Generate hue prime number n, g must be primative root of n. Primitive root - g^1 to n gives all numbers in that range as a mod of n. ex. n=11, g=8.
+Algo
+Sender generates n and g, sends those to receiver
+Sender and receiver generate a random number [1,n), x and y respectively
+Sender calculates k_1 = g^x mod n, sends this to receiver
+Receiver calculates k_2 = g^y mod n, sends to receiver
+Both calculate shared secret key
+Sender: k2^x mod n = (g^y mod n)^x mod n = g^xy mod n
+Receiver: k1^y mod n = (g^x mod n)^y mod n = g^yx mod n
+Using primitive root ensures we have the maximum number of keys, prevents brute force attacks
+
+Cracking
+Relies on there being no efficient way to calculate the discrete log
+Trapdoor function - easy to calculate in one direction, difficult to inverse
+Man in the middle - attacker has k1, sends m1 to receiver, attacker gets k2, sends m2 to sender. Can be circumvented with SHA256 hashes. If tampered with, hashes will be different.
 """
 
 
