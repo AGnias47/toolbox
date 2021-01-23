@@ -1,8 +1,3 @@
-/*
- *   A. Gnias
- *   openjdk version "11.0.3"
- */
-
 public class Husky extends Dog {
 
     private Husky(Builder builder) {
