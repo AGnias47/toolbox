@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
+#include <vector>
 
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include "factorial.hpp"
 
@@ -25,9 +25,18 @@ TEST(FactorialTest, ErrorCheck)
 
 TEST(FactorialTest, ThrowCheck)
 {
-    EXPECT_THROW(factorial(0), const char *);
+    EXPECT_THROW(factorial(-5), const char *);
 }
 
+TEST(FactorialTestMemo, ExpectedResults)
+{
+    std::vector<int> M(6, 0);
+    ASSERT_EQ(factorial(1, M), 1);
+    ASSERT_EQ(factorial(3, M), 6);
+    ASSERT_EQ(M[5], 0);
+    ASSERT_EQ(factorial(5, M), 120);
+    ASSERT_EQ(M[5], 120);
+}
 
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
