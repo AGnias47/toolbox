@@ -4,7 +4,7 @@
 
 void Stack::add(int n)
 {
-    if (index + 1 == DEFAULT_SIZE)
+    if (index + 1 == size)
         resize();
     data[index + 1] = n;
     index++;
