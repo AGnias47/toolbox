@@ -1,11 +1,13 @@
 # [Simplified Instructions for Submitting a Change to cpython](https://devguide.python.org/)
 
 ## One Time Steps
+
 1. Create an account on the [Python Bug Tracker](https://bugs.python.org/user?@template=register) site
 2. Fill out and sign the [contributor form](https://www.python.org/psf/contrib/contrib-form/)
 3. Fork the [cpython](https://github.com/python/cpython.git) repository
 
 ## Issue Specific Changes
+
 1. Unless changing a small typo, etc., submit an issue using the [Bug Tracker](https://bugs.python.org/)
 2. Build Python
 Linux: ```./configure --with-pydebug && make -j```
