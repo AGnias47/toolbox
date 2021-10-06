@@ -14,7 +14,7 @@ public:
     int pop_first();
     int pop_last();
     int remove(int p);
-    int search(int n);  // nyi
+    int search(int n);
     void print_list();
 private:
     int size;
