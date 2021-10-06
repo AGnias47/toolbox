@@ -10,12 +10,12 @@ DynamicSet::DynamicSet()
 void DynamicSet::resize()
 {
     int new_size = size * 2;
-    int *new_data;
-    new_data = new int[size * 2];
+    int *new_data = new int[size * 2];
     for (int i = 0; i < size; i++)
     {
         new_data[i] = data[i];
     }
+    delete data;
     data = new_data;
     size *= 2;
 }
