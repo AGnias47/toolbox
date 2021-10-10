@@ -2,11 +2,11 @@
 
 #include "dynamic_set.hpp"
 
-class Queue : DynamicSet
+class ArrayBasedQueue : DynamicSet
 {
 public:
-    Queue();
-    ~Queue() = default;
+    ArrayBasedQueue();
+    ~ArrayBasedQueue() = default;
 
     void add(int n);
     int pop();
