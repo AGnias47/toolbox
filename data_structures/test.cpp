@@ -1,6 +1,7 @@
 #include "stack.hpp"
 #include "array_based_queue.hpp"
 #include "linked_list.hpp"
+#include "queue.hpp"
 
 #include <assert.h>
 
@@ -26,7 +27,7 @@ void test_stack()
     std::cout << "Stack test passed" << std::endl;
 }
 
-void test_queue()
+void test_array_based_queue()
 {
     ArrayBasedQueue queue = ArrayBasedQueue();
     queue.add(1);
@@ -64,7 +65,6 @@ void test_linked_list()
     assert(linked_list.first() == 0);
     assert(linked_list.last() == 9);
     linked_list.add(3, 4);
-    linked_list.print_list();
     assert(linked_list.pop_first() == 0);
     assert(linked_list.pop_first() == 1);
     assert(linked_list.pop_first() == 3);
@@ -74,12 +74,34 @@ void test_linked_list()
     assert(linked_list.remove(1) == 5);
     assert(linked_list.search(5) == -1);
     assert(linked_list.search(6) == 1);
-    linked_list.print_list();
+    std::cout << "Linked List Test Passed" << std::endl;
+}
+
+void test_queue()
+{
+    Queue queue = Queue();
+    queue.add(1);
+    queue.add(3);
+    queue.add(5);
+    assert(queue.pop() == 1);
+    assert(queue.pop() == 3);
+    assert(queue.pop() == 5);
+    for (int i = 0; i < 15000; i++)
+    {
+        queue.add(i);
+    }
+    for (int i = 0; i < 15000; i++)
+    {
+        assert(queue.pop() == i);
+    }
+    std::cout << "Queue test passed" << std::endl;
 }
 
 int main()
 {
     test_stack();
+    test_array_based_queue();
+    test_linked_list();
     test_queue();
     return 0;
 }

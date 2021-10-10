@@ -83,8 +83,12 @@ void LinkedList::add_last(int n)
     Node *new_last = new Node();
     new_last->value = n;
     new_last->node = nullptr;
-    tail->node->node = new_last;
-    tail->node = tail->node->node;
+    if (tail->node == nullptr) tail->node = new_last;
+    else
+    {
+        tail->node->node = new_last;
+        tail->node = tail->node->node;
+    }
     size++;
     if (head->node == nullptr)
         head->node = new_last;
