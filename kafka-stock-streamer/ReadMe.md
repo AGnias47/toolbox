@@ -10,15 +10,15 @@ in another application.
 
 ## Configuration
 
-kafka:
-    server: Kafka Server
-    topic: Kafka topic to produce to / consume from
-stock:
-    symbol: Stock symbol to use
-    start_date: Start date in the format YYYY-MM-DD
-    end_date: End date in  the format YYYY-MM-DD
-data:
-    encoding: Data encoding, should be UTF-8
+kafka:  
+    server: Kafka Server  
+    topic: Kafka topic to produce to / consume from  
+stock:  
+    symbol: Stock symbol to use  
+    start_date: Start date in the format YYYY-MM-DD  
+    end_date: End date in  the format YYYY-MM-DD  
+data:  
+    encoding: Data encoding, should be UTF-8  
 
 ## Data Format
 
