@@ -5,7 +5,7 @@ points are grabbed for each day the stock market is open for the specified stock
 symbol between the start and end dates specified.
 
 The producer pushes stock data to a topic, and the consumer reads this stock data, 
-printing the data to the console. This can be greatly expanded upon for more functionality 
+printing the data to the console. This can be expanded upon for more functionality 
 in another application.
 
 ## Configuration
