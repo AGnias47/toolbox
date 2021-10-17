@@ -10,6 +10,7 @@ in another application.
 
 ## Configuration
 
+```
 kafka:  
     server: Kafka Server  
     topic: Kafka topic to produce to / consume from  
@@ -19,6 +20,7 @@ stock:
     end_date: End date in  the format YYYY-MM-DD  
 data:  
     encoding: Data encoding, should be UTF-8  
+```
 
 ## Data Format
 
