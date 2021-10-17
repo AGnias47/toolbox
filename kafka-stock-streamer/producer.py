@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import json
-import yaml
 
-import yfinance as yf
 from confluent_kafka import Producer
+import yaml
+import yfinance as yf
 
 with open("config.yml", "r") as Y:
     config = yaml.safe_load(Y)
