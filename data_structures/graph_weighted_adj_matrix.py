@@ -4,6 +4,7 @@ from math import inf
 from enum import Enum
 from collections import deque
 from operator import attrgetter
+from copy import deepcopy
 
 """
 Graph with adjacency matrix representation
@@ -24,6 +25,22 @@ def create_matrix(size):
     """
     # m^2 matrix
     return [[0 for _x in range(size)] for _y in range(size)]
+
+
+def print_matrix(m):
+    """Prints the matrix in a pretty format with the corresponding
+    vertices on the x and y axes
+
+    Args:
+        m (matrix): Matrix to print
+    """
+    print("    ", end="")
+    for y in range(len(m)):
+        print(y, end="  ")
+    print()
+    for x in range(len(m)):
+        print(x, end="  ")
+        print(m[x])
 
 
 class Color(Enum):
@@ -398,6 +415,22 @@ class Graph:
             Q.sort(key=attrgetter("key"))
         return dist, pred
 
+    def floyd_warshall_asp(self):
+        n = len(self.adjacency_matrix)
+        D = list()
+        D.append(deepcopy(self.adjacency_matrix))
+        for x in range(1, n):
+            for y in range(1, n):
+                if D[0][x][y] == 0 and x != y:
+                    D[0][x][y] = inf
+        print_matrix(D[0])
+        for k in range(1, n):
+            D.append(deepcopy(D[k-1]))
+            for i in range(1, n):
+                for j in range(1, n):
+                    D[k][i][j] = min(D[k-1][i][j], D[k-1][i][k] + D[k-1][k][j])
+        return D[-1]
+
 
 if __name__ == "__main__":
     graph1 = Graph("resources/graph1_weighted.txt")
@@ -423,3 +456,6 @@ if __name__ == "__main__":
     print("Dijkstra SSP Results")
     print(dist)
     print(pred)
+    D = graph1.floyd_warshall_asp()
+    print("Floyd-Warshall ASP Results")
+    print_matrix(D)
