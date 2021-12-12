@@ -423,7 +423,6 @@ class Graph:
             for y in range(1, n):
                 if D[0][x][y] == 0 and x != y:
                     D[0][x][y] = inf
-        print_matrix(D[0])
         for k in range(1, n):
             D.append(deepcopy(D[k-1]))
             for i in range(1, n):
