@@ -338,18 +338,57 @@ class Graph:
         A[0].key = 0
         return A
 
+    def bellman_ford_ssp(self, s):
+        # Initialization
+        dist = dict()
+        pred = dict()
+        for v in self.vertices:
+            dist[v] = inf
+            pred[v] = None
+        dist[s] = 0
+        # Run the Algo
+        for _ in range(len(self.vertices)-1):
+            for e in self.edges:
+                # Relax method
+                if dist[e.v] > dist[e.u] + e.w:
+                    dist[e.v] = dist[e.u] + e.w
+                    pred[e.v] = e.u
+        # Check for negative cycles
+        for e in self.edges:
+            if dist[e.v] > dist[e.u] + e.w:
+                print(dist)
+                print(e.v, e.u)
+                return None, None
+        return dist, pred
+
+    def dijkstra_ssp(self, s):
+        # Initialization
+        dist = dict()
+        pred = dict()
+        for v in self.vertices:
+            dist[v] = inf
+            pred[v] = None
+        dist[s] = 0
+
 
 if __name__ == "__main__":
     graph1 = Graph("resources/graph1_weighted.txt")
     A = graph1.mst_kruskal()
+    print("Kruskal MST Results")
     print(*A, sep="\n")
     total = 0
     for e in A:
         total += e.w
     print(total)
     P = graph1.mst_prim()
+    print("Prim MST Results")
     print(*P, sep="->")
     total = 0
     for v in P:
         total += v.key
     print(total)
+    dist, pred = graph1.bellman_ford_ssp(2)
+    print("Bellman-Ford SSP Results")
+    print(dist)
+    print(pred)
+
