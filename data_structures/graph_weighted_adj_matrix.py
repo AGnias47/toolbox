@@ -339,6 +339,14 @@ class Graph:
         return A
 
     def bellman_ford_ssp(self, s):
+        """
+        Finds the Single-source Shortest Path from vertex s to all other vertices using the Bellman-Ford algorithm
+
+        Args:
+            s: int
+
+        Returns: dist, pred dictionaries; returns None for both if a negative cycle exists
+        """
         # Initialization
         dist = dict()
         pred = dict()
@@ -347,7 +355,7 @@ class Graph:
             pred[v] = None
         dist[s] = 0
         # Run the Algo
-        for _ in range(len(self.vertices)-1):
+        for _ in range(len(self.vertices) - 1):
             for e in self.edges:
                 # Relax method
                 if dist[e.v] > dist[e.u] + e.w:
@@ -362,13 +370,33 @@ class Graph:
         return dist, pred
 
     def dijkstra_ssp(self, s):
-        # Initialization
-        dist = dict()
-        pred = dict()
+        """
+        Find the Single-source Shortest Path from vertex s to all other verticecs using Dijkstra's algorithm.
+
+        Args:
+            s: int
+
+        Returns: dist, pred dictionaries
+        """
+        Q = list()
+        S = dict()
         for v in self.vertices:
-            dist[v] = inf
-            pred[v] = None
-        dist[s] = 0
+            v_struct = PrimVertex(v, inf, None)
+            if v == s:
+                v_struct.key = 0
+            S[v] = v_struct
+            Q.append(v_struct)
+        Q.sort(key=attrgetter("key"))
+        while Q:
+            u = Q.pop(0)
+            for vertex, weight in enumerate(self.adjacency_matrix[u.vertex]):
+                if weight > 0:
+                    v = S[vertex]
+                    if v.key > u.key + weight:
+                        v.key = u.key + weight
+                        v.p = u.vertex
+            Q.sort(key=attrgetter("key"))
+        return dist, pred
 
 
 if __name__ == "__main__":
@@ -391,4 +419,7 @@ if __name__ == "__main__":
     print("Bellman-Ford SSP Results")
     print(dist)
     print(pred)
-
+    dist, pred = graph1.dijkstra_ssp(2)
+    print("Dijkstra SSP Results")
+    print(dist)
+    print(pred)
