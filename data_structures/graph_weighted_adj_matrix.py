@@ -406,8 +406,9 @@ class Graph:
         Q.sort(key=attrgetter("key"))
         while Q:
             u = Q.pop(0)
+            S.pop(u.vertex)
             for vertex, weight in enumerate(self.adjacency_matrix[u.vertex]):
-                if weight > 0:
+                if weight > 0 and vertex in S:
                     v = S[vertex]
                     if v.key > u.key + weight:
                         v.key = u.key + weight
