@@ -79,10 +79,11 @@ class Edge:
         return id(self)
 
 
-class PrimVertex:
+class Vertex:
     def __init__(self, v, k, p):
         """
-        Extended vertex representation for Prim's Algorithm
+        Extended vertex representation for use in Prim's and Dijkstra's Algorithm
+
         Args:
             v: vertex
             k: weight
@@ -102,7 +103,7 @@ class PrimVertex:
         return f"{self.vertex} ({self.key})"
 
     def __hash__(self):
-        return id(self)
+        return self.vertex
 
 
 class SetHandler:
@@ -336,7 +337,7 @@ class Graph:
         Q = list()
         A = list()
         for v in self.vertices:
-            v_struct = PrimVertex(v, inf, None)
+            v_struct = Vertex(v, inf, None)
             Q.append(v_struct)
             vertices[v] = v_struct
         Q.sort(key=attrgetter("key"))
@@ -398,7 +399,7 @@ class Graph:
         Q = list()
         S = dict()
         for v in self.vertices:
-            v_struct = PrimVertex(v, inf, None)
+            v_struct = Vertex(v, inf, None)
             if v == s:
                 v_struct.key = 0
             S[v] = v_struct
