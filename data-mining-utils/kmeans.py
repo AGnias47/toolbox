@@ -1,29 +1,18 @@
 #!/usr/bin/env python3
 
 """
-Used to perform cluster analysis
+Used to perform k-means clustering
 """
-
-import random
-
-from nltk.cluster import kmeans, cosine_distance
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import PCA
-import numpy as np
-
 
 from copy import deepcopy
+import random
 
 import matplotlib.pyplot as plt
+from nltk.cluster import kmeans, cosine_distance
+import numpy as np
 import seaborn as sns
-
-FEATURE_COUNT = 5
-
-"""
-Used to perform cluster analysis
-"""
-
-COLORMAP = "viridis"
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import PCA
 
 
 def kmeans_clustering(sample, clusters):
@@ -158,35 +147,49 @@ def write_relevant_features_to_file(fname, clusters, cluster_dict, feature_dict,
                 F.write(", ")
     return None
 
-def run_kmeans(sample, cluster_sizes):
-    for k in cluster_sizes:
-        k_sample = deepcopy(sample)
-        clusters, feature_dict, cluster_dict, pca_centroids, pca_data, distances = kmeans_clustering(k_sample, k)
-        for cluster, tweet, distance in zip(clusters, k_sample, distances):
-            tweet.cluster = cluster
-            tweet.cluster_distance = distance
-        scatterplot = sns.scatterplot(
-            x=pca_data[:, 0], y=pca_data[:, 1], hue=clusters, s=5, alpha=0.7, palette=COLORMAP
-        )
-        scatterplot = sns.scatterplot(
-            x=pca_centroids[:, 0],
-            y=pca_centroids[:, 1],
-            hue=range(k),
-            s=25,
-            ax=scatterplot,
-            palette=COLORMAP,
-            legend=False,
-        )
-        for i in range(k):
-            content = "("
-            j = 0
-            for key, v in cluster_dict[i].items():
-                if j > 0:
-                    content += ", "
-                content += feature_dict[key]
-                j += 1
-                if j >= 3:
-                    content += ")"
-                    break
-            plt.text(s=content, x=pca_centroids[i, 0], y=pca_centroids[i, 1], fontsize=7)
-        plt.show()
+
+def run_kmeans_and_plot_data(sample, k, colormap="viridis"):
+    """
+    Runs k-means clustering on a dataset and plots the data
+
+    Parameters
+    ----------
+    sample: Collection
+    k: int
+        Number of clusters
+    colormap: str (default is viridis)
+        See https://matplotlib.org/stable/tutorials/colors/colormaps.html for options
+
+    Returns
+    -------
+    Collection, dict, dict, ndarray, ndarray, Collection
+        List of cluster corresponding to sample, dict of features, dict of clusters, pca centroids, pca tweets, and
+        distances of each Tweet to their closest centroid
+    """
+    clusters, feature_dict, cluster_dict, pca_centroids, pca_data, distances = kmeans_clustering(sample, k)
+    scatterplot = sns.scatterplot(
+        x=pca_data[:, 0], y=pca_data[:, 1], hue=clusters, s=5, alpha=0.7, palette=colormap
+    )
+    sns.scatterplot(
+        x=pca_centroids[:, 0],
+        y=pca_centroids[:, 1],
+        hue=range(k),
+        s=25,
+        ax=scatterplot,
+        palette=colormap,
+        legend=False,
+    )
+    for i in range(k):
+        content = "("
+        j = 0
+        for key, v in cluster_dict[i].items():
+            if j > 0:
+                content += ", "
+            content += feature_dict[key]
+            j += 1
+            if j >= 3:
+                content += ")"
+                break
+        plt.text(s=content, x=pca_centroids[i, 0], y=pca_centroids[i, 1], fontsize=7)
+    plt.show()
+    return clusters, feature_dict, cluster_dict, pca_centroids, pca_data, distances

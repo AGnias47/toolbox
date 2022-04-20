@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Functions for handling sample data
+Functions for handling sample data from Twint
 """
 
 from .Tweet import string_to_tweet, tweet_to_string
@@ -28,7 +28,7 @@ def read_sample(sample, label=False, cluster=False, shuffle=False, limit=9999999
         If true, parse clusters from sample
     shuffle: bool
         If true, shuffle the sample
-    limit (default is 999999999): int
+    limit: int (default is 999999999)
         Limit sample to x amount of tweets
 
     Returns
@@ -63,9 +63,9 @@ def write_sample(fname, tweets, label=False, cluster=False):
         Path to write file
     tweets: list
         List of tweets to write to file
-    label (default is False): bool
+    label: bool (default is False)
         If True, include label in file
-    cluster (default is False): bool
+    cluster: bool (default is False)
         If True, include cluster in file
 
     Returns

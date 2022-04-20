@@ -1,11 +1,40 @@
 #!/usr/bin/env python3
 
 """
-Random number generation using the random.org API
+Random number utilities
 """
 
-import requests
+import os
 import json
+import random
+import requests
+
+import numpy as np
+import torch
+import torch.backends.cudnn
+
+
+def seed_everything(seed=42):
+    """
+    Seed everything. Taken from:
+    https://datascience.stackexchange.com/questions/66345/why-ml-model-produces-different-results-despite-random-state-defined-and-how-to
+
+    Parameters
+    ----------
+    seed: int (default is 42)
+
+    Returns
+    -------
+    None
+    """
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    return None
 
 
 def true_random_numbers(numbers, minimum, maximum, api_key, random_url="https://api.random.org/json-rpc/2/invoke"):
@@ -52,4 +81,6 @@ def true_random_numbers(numbers, minimum, maximum, api_key, random_url="https://
 if __name__ == "__main__":
     with open("random_org_key") as F:
         random_org_api_key = F.read().strip()
-    print(true_random_numbers(1, 1, 2, random_org_api_key))
+    random_int = true_random_numbers(1, 1, 2, random_org_api_key)
+    seed_everything(random_int)
+    print(f"Everything seeded with {random_int}")

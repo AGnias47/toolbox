@@ -4,7 +4,7 @@
 Class for storing Tweet data and converting to / from Twint format
 """
 
-from .nlp import preprocess_text
+from ..nlp import preprocess_text
 
 from datetime import datetime
 

@@ -5,11 +5,13 @@ Natural Language Processing functions
 """
 
 from string import punctuation
+import nlpaug.augmenter.word as naw
 import nltk
 import nltk.corpus
 from nltk.stem import SnowballStemmer
 
 LANGUAGE = "english"
+AUGMENTER = naw.ContextualWordEmbsAug(model_path="bert-base-uncased", action="substitute")
 
 
 def is_english(text):
@@ -65,3 +67,20 @@ def preprocess_text(content):
     stemmer = SnowballStemmer(LANGUAGE)
     content = [stemmer.stem(t) for t in content]
     return content
+
+
+def augment_text_with_relevant_word(text):
+    """
+    Augments text by replacing word(s) with a contextually significant word via BERT
+
+    Parameters
+    ----------
+    text: str
+        Text to augment
+
+    Returns
+    -------
+    str
+        Augmented text
+    """
+    return AUGMENTER.augment(text)
