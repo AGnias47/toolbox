@@ -21,8 +21,9 @@ public class BlackMouthCur extends Dog {
         private int weight;
         private Sex sex;
 
-        public Builder(String name) {
+        public Builder name(String name) {
             this.name = name;
+            return this;
         }
 
         public Builder weight(int weight) {
