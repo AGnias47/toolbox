@@ -24,7 +24,7 @@ def sentiment_intensity_analyzer(sample):
     sid = SentimentIntensityAnalyzer()
     pos, neg, neu = list(), list(), list()
     for text in tqdm.tqdm(sample):
-        compound_score = sid.polarity_scores(text.raw_content)["compound"]
+        compound_score = sid.polarity_scores(text)["compound"]
         if compound_score > 0:
             pos.append(text)
         elif compound_score < 0:
