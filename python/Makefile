@@ -20,3 +20,8 @@ mlflow:   ## See Neural Net results via MLflow
 static:   ## Lint
 	pylint --disable=C0103,C0301,R1711,R1705,R0903,R1734,W1514,C0411,R0913,R0902,R0914,R1735 .
 
+
+test :    ## Test code with coverage
+	coverage run -m pytest -rP && coverage report && coverage-badge
+
+
