@@ -1,4 +1,4 @@
 matplotlib==3.4.2
 mnist==0.2.2
-numpy==1.21.1
+numpy==1.22.0
 
