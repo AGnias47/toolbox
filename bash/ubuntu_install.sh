@@ -5,6 +5,13 @@ Installs commonly used utilities for Ubuntu. This is mainly for me so it may
 contain excessive installs for someone elses preferences
 '
 
+# Install aliasfile
+wget -P ~/.bash_aliases https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/aliasfile
+wget -P ~/.vimrc https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/vimrc
+
+# Configure git
+git config --global init.defaultBranch main
+
 # Install packages via apt
 sudo apt install \
 vim \
@@ -44,5 +51,10 @@ echo 'source ~/.bash_profile || true' >> ~/.bashrc
 
 # Install and run aptupdate script
 sudo wget -P /usr/local/bin https://raw.githubusercontent.com/AGnias47/toolbox/main/utilities/aptupdate
+sudo chmod 755 /usr/local/bin/aptupdate
 sudo aptupdate
+
+echo "Manual Steps to take"
+echo "- Setup ssh keys"
+echo "- Install Dropbox"
 
