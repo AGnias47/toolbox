@@ -72,7 +72,7 @@ echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' >> ~/.bash_profile
 sudo aptupdate
 
 echo "Manual Steps to take"
-echo "- Setup ssh keys"
+echo "- Setup ssh keys (ssh-keygen -t ed25519 -C <email>)"
 echo "- Install Dropbox"
 echo "- Confirm rootless Docker install"
 
