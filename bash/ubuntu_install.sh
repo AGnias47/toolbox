@@ -9,6 +9,11 @@ contain excessive installs for someone elses preferences
 wget -P ~/.bash_aliases https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/aliasfile
 wget -P ~/.vimrc https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/vimrc
 
+# Create bash profile
+echo 'export PATH=$PATH:/usr/local/bin:/home/$USER/.local/bin' >> ~/.bash_profile
+echo 'source ~/.bash_profile || true' >> ~/.bashrc
+source ~/.bashrc
+
 # Configure git
 git config --global init.defaultBranch main
 
@@ -34,10 +39,12 @@ sudo snap install gimp
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
 # Install node via nvm
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.bashrc
 nvm install node
+
 # Install vscode
 sudo apt install wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -51,24 +58,19 @@ sudo apt install code
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-dockerd-rootless-setuptool.sh install
 sudo groupadd docker || true
 sudo usermod -aG docker $USER
 newgrp docker
+echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' >> ~/.bash_profile
+source ~/.bashrc
 rm get-docker.sh
 
 # Install mdless markdown formatter
 sudo gem install mdless
 
-# Create bash profile
-echo 'export PATH=$PATH:/usr/local/bin:/home/$USER/.local/bin' >> ~/.bash_profile
-echo 'source ~/.bash_profile || true' >> ~/.bashrc
-source ~/.bashrc
-
 # Install and run aptupdate script
 sudo wget -P /usr/local/bin https://raw.githubusercontent.com/AGnias47/toolbox/main/utilities/aptupdate
 sudo chmod 755 /usr/local/bin/aptupdate
-echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' >> ~/.bash_profile
 sudo aptupdate
 
 echo "Manual Steps to take"
