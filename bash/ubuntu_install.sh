@@ -52,6 +52,9 @@ sudo apt install code
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 dockerd-rootless-setuptool.sh install
+sudo groupadd docker || true
+sudo usermod -aG docker $USER
+newgrp docker
 rm get-docker.sh
 
 # Install mdless markdown formatter
