@@ -23,6 +23,7 @@ python3-{dev,venv,pip} \
 openjdk-17-jdk-headless \
 ruby-full \
 uidmap \
+jq \
 cmatrix
 
 # Install packages via snap
