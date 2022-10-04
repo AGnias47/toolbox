@@ -6,16 +6,15 @@ contain excessive installs for someone elses preferences
 '
 
 # Install aliasfile and .vimrc
-wget -P ~/.bash_aliases https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/aliasfile
-wget -P ~/.vimrc https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/vimrc
+wget https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/aliasfile
+mv aliasfile ~/.bash_aliases
+wget https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/vimrc
+mv vimrc ~/.vimrc
 
 # Create bash profile
 echo 'export PATH=$PATH:/usr/local/bin:/home/$USER/.local/bin' >> ~/.bash_profile
 echo 'source ~/.bash_profile || true' >> ~/.bashrc
 source ~/.bashrc
-
-# Configure git
-git config --global init.defaultBranch main
 
 # Install packages via apt
 sudo apt install \
@@ -30,6 +29,9 @@ ruby-full \
 uidmap \
 jq \
 cmatrix
+
+# Configure git
+git config --global init.defaultBranch main
 
 # Install packages via snap
 sudo snap install spotify
