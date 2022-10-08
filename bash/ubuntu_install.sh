@@ -5,6 +5,9 @@ Installs commonly used utilities for Ubuntu. This is mainly for me so it may
 contain excessive installs for someone elses preferences
 '
 
+sudo apt update
+sudo apt install -y wget
+
 # Install aliasfile and .vimrc
 wget https://raw.githubusercontent.com/AGnias47/toolbox/main/bash/aliasfile
 mv aliasfile ~/.bash_aliases
@@ -17,7 +20,7 @@ echo 'source ~/.bash_profile || true' >> ~/.bashrc
 source ~/.bashrc
 
 # Install packages via apt
-sudo apt install \
+sudo apt install -y \
 vim \
 curl \
 make \
@@ -48,14 +51,13 @@ source ~/.bashrc
 nvm install node
 
 # Install vscode
-sudo apt install wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
-sudo apt install apt-transport-https
+sudo apt install -y apt-transport-https
 sudo apt update
-sudo apt install code
+sudo apt install -y code
 
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
