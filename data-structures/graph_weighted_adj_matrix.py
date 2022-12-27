@@ -394,16 +394,18 @@ class Graph:
         Args:
             s: int
 
-        Returns: dist, pred dictionaries
+        Returns: list of Vertex with k populated with distance from s
         """
         Q = list()
         S = dict()
+        dijkstra_verticies = list()
         for v in self.vertices:
             v_struct = Vertex(v, inf, None)
             if v == s:
                 v_struct.key = 0
             S[v] = v_struct
             Q.append(v_struct)
+            dijkstra_verticies.append(v_struct)
         Q.sort(key=attrgetter("key"))
         while Q:
             u = Q.pop(0)
@@ -415,7 +417,7 @@ class Graph:
                         v.key = u.key + weight
                         v.p = u.vertex
             Q.sort(key=attrgetter("key"))
-        return dist, pred
+        return dijkstra_verticies
 
     def floyd_warshall_asp(self):
         n = len(self.adjacency_matrix)
@@ -453,10 +455,9 @@ if __name__ == "__main__":
     print("Bellman-Ford SSP Results")
     print(dist)
     print(pred)
-    dist, pred = graph1.dijkstra_ssp(2)
+    dijkstra_verticies = graph1.dijkstra_ssp(2)
     print("Dijkstra SSP Results")
-    print(dist)
-    print(pred)
+    print(*dijkstra_verticies, sep=", ")
     D = graph1.floyd_warshall_asp()
     print("Floyd-Warshall ASP Results")
     print_matrix(D)
