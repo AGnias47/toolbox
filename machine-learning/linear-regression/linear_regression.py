@@ -10,7 +10,6 @@ Notebooks from Supervised Machine Learning: Regression and Classification by And
 * C1_W2_Lab02_Multiple_Variable_Soln
 """
 
-from copy import deepcopy
 import matplotlib.pyplot as plt
 import numpy as np
 import single_variable
@@ -20,7 +19,7 @@ import multiple_variable
 def gradient_descent(
     X,
     Y,
-    w_input,
+    w,
     b,
     gradient_function,
     cost_function,
@@ -48,7 +47,6 @@ def gradient_descent(
     float, float, list, list
     """
     j = list()
-    w = deepcopy(w_input)
     for i in range(gd_iter):
         dj_dw, dj_db = gradient_function(X, Y, w, b)
         w = w - alpha * dj_dw

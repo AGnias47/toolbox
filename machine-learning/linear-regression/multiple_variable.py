@@ -2,10 +2,37 @@ import numpy as np
 
 
 def model(x, w, b):
+    """
+    Linear Regression Model
+
+    Parameters
+    ----------
+    x: float
+    w: float
+    b: float
+
+    Returns
+    -------
+    float
+    """
     return np.dot(x, w) + b
 
 
 def gradients(X, Y, w, b):
+    """
+    Computes the partial derivatives of w and b with respect to the cost function
+
+    Parameters
+    ----------
+    X: np.array
+    Y: np.array
+    w: np.array
+    b: float
+
+    Returns
+    -------
+    np.array, float
+    """
     m, n = X.shape
     dj_dw = np.zeros((n,))
     dj_db = 0.0

@@ -28,7 +28,7 @@ def gradients(X, Y, w, b):
 
     Returns
     -------
-    float
+    float, float
     """
     dj_dw = 0.0
     dj_db = 0.0
