@@ -116,8 +116,10 @@ if __name__ == "__main__":
     b = 0
     j_hist_single = single_variable_gradient_descent(X, Y, w, b)
     # Each array represents X values from a training example
-    X = np.array([[3205, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
+    X = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
     Y = np.array([460, 232, 178])
+
+
     # Training matrix will have dimensions m x n, where M is the number of training examples and n is the number of
     #   features
     w = np.array([0, 0, 0, 0])
