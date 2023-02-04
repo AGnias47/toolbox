@@ -94,7 +94,7 @@ def multiple_variable_gradient_descent(X, Y, w, b):
         multiple_variable.gradients,
         multiple_variable.cost_function,
         1000,
-        5.0e-7,
+        1e-7,
         True,
     )
     print("Ideal weights")
@@ -103,9 +103,9 @@ def multiple_variable_gradient_descent(X, Y, w, b):
     print(f"b: {b}")
     print("Predictions")
     print("-----------")
-    for x in range(X.shape[0]):
-        print(f"X: {x}")
-        print(f"Y: {multiple_variable.model(x, w, b)}")
+    for i in range(X.shape[0]):
+        print(f"X: {X[i]}")
+        print(f"Y: {multiple_variable.model(X[i], w, b)}")
     return j_hist
 
 
@@ -118,7 +118,6 @@ if __name__ == "__main__":
     # Each array represents X values from a training example
     X = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
     Y = np.array([460, 232, 178])
-
 
     # Training matrix will have dimensions m x n, where M is the number of training examples and n is the number of
     #   features
