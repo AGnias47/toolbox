@@ -62,7 +62,7 @@ def gradients(X, Y, w, b):
     return dj_dw / m, dj_db / m
 
 
-def cost_function(X, y, w, b, lam=None):
+def compute_cost(X, Y, w, b, lam=None):
     """
     Logistic regression cost function
 
@@ -78,15 +78,18 @@ def cost_function(X, y, w, b, lam=None):
     -------
     float
     """
-    loss_sum = 0.0
+    total_error = 0.0
     m, n = X.shape
     for i in range(m):
-        z_wb = 0.0
-        for j in range(n):
-            z_wb_ij = w[j]*X[i, j]
-            z_wb += z_wb_ij
-        z_wb += b
-        f_wb = sigmoid(z_wb)
-        loss = -y[i] * np.log(f_wb) - (1 - y[i]) * np.log(1 - f_wb)
-        loss_sum += loss
-    return loss_sum/m
+        model_result = model(X[i], w, b)
+        total_error += -Y[i] * np.log(model_result) - (1 - Y[i]) * np.log(
+            1 - model_result
+        )
+    total_error = total_error / m
+    if lam:
+        regularized_cost = 0.0
+        for i in range(n):
+            regularized_cost += w[i] ** 2
+        regularized_cost = (lam / (2 * m)) * regularized_cost
+        total_error += regularized_cost
+    return total_error
