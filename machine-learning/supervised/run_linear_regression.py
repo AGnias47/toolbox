@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+"""
+Linear Regression Model
+Resources
+---------
+Notebooks from Supervised Machine Learning: Regression and Classification by Andrew Ng
+* C1_W1_Lab04_Gradient_Descent_Soln
+* C1_W2_Lab02_Multiple_Variable_Soln
+"""
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -17,6 +27,7 @@ def single_variable_gradient_descent(X, Y, w, b):
         single_variable.cost_function,
         1000,
         0.001,
+        None,
         True,
     )
     print("Ideal weights")
@@ -41,6 +52,7 @@ def multiple_variable_gradient_descent(X, Y, w, b):
         multiple_variable.cost_function,
         1000,
         1e-7,
+        None,
         True,
     )
     print("Ideal weights")

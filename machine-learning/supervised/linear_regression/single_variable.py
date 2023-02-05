@@ -40,7 +40,7 @@ def gradients(X, Y, w, b):
     return dj_dw / M, dj_db / M
 
 
-def cost_function(X, Y, w, b):
+def cost_function(X, Y, w, b, lam=None):
     """
     Squared error cost function
 
@@ -50,13 +50,18 @@ def cost_function(X, Y, w, b):
     Y: np.array
     w: float
     b: float
+    lam: float
 
     Returns
     -------
     float
     """
     total_error = 0.0
-    M = len(X)
-    for i in range(M):
+    m = len(X)
+    for i in range(m):
         total_error += (model(X[i], w, b) - Y[i]) ** 2
-    return (1 / (2 * M)) * total_error
+
+    total_error = total_error / (2*m)
+    if lam:
+        total_error += (lam / (2 * m)) * w ** 2
+    return total_error
