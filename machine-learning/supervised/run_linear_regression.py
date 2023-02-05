@@ -1,62 +1,10 @@
 #!/usr/bin/env python3
 
-"""
-Linear Regression Model
-
-Resources
----------
-Notebooks from Supervised Machine Learning: Regression and Classification by Andrew Ng
-* C1_W1_Lab04_Gradient_Descent_Soln
-* C1_W2_Lab02_Multiple_Variable_Soln
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
-import single_variable
-import multiple_variable
 
-
-def gradient_descent(
-    X,
-    Y,
-    w,
-    b,
-    gradient_function,
-    cost_function,
-    gd_iter,
-    alpha,
-    debug=False,
-):
-    """
-    Gradient descent function. Prints and stores debug info if true
-
-    Parameters
-    ----------
-    X: np.array
-    Y: np.array
-    w: float
-    b: float
-    gradient_function: function
-    cost_function: function
-    gd_iter: int
-    alpha: float
-    debug: bool (default is False)
-
-    Returns
-    -------
-    float, float, list, list
-    """
-    j = list()
-    for i in range(gd_iter):
-        dj_dw, dj_db = gradient_function(X, Y, w, b)
-        w = w - alpha * dj_dw
-        b = b - alpha * dj_db
-        if debug and i < 100_000:
-            cost = cost_function(X, Y, w, b)
-            if i % 100 == 0:
-                print(f"Cost: {cost}")
-            j.append(cost)
-    return w, b, j
+from gradient_descent.gradient_descent import gradient_descent
+from linear_regression import single_variable, multiple_variable
 
 
 def single_variable_gradient_descent(X, Y, w, b):
