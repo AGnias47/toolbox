@@ -2,6 +2,7 @@
 
 """
 Linear Regression Model
+
 Resources
 ---------
 Notebooks from Supervised Machine Learning: Regression and Classification by Andrew Ng

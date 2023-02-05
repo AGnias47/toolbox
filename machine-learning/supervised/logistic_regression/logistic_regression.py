@@ -1,3 +1,12 @@
+"""
+Module for Logistic Regression
+
+Resources
+---------
+Notebooks from Supervised Machine Learning: Regression and Classification by Andrew Ng
+* C1_W3_Logistic_Regression
+"""
+
 import numpy as np
 
 

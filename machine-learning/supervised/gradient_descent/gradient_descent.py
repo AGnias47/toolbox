@@ -35,6 +35,10 @@ def gradient_descent(
     for i in range(gd_iter):
         dj_dw, dj_db = gradient_function(X, Y, w, b)
         if lam:
+            # Currently untested, may have to implement in the gradient function as
+            #   for j in range(n):
+            #         dj_dw_j_reg = (lambda_/m)*w[j]
+            #         dj_dw[j] = dj_dw[j] + dj_dw_j_reg
             w = w - alpha * (dj_dw + (lam/m)*w)
         else:
             w = w - alpha * dj_dw
