@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 
 """
-Script implementation of C2_W1_Assignment Notebook from Advanced Learning Algorithms course by Andrew Ng
+Script implementation of  Notebook from Advanced Learning Algorithms course by Andrew Ng
+
+Resources
+---------
+Notebooks from Advanced Learning Algorithms by Andrew Ng
+* C2_W1_Assignment
+* C2_W2_Assignment
+
 """
 
 import numpy as np
@@ -14,9 +21,9 @@ def keras_model():
     model = Sequential(
         [
             tf.keras.Input(shape=(400,)),  # specify input size
-            Dense(units=25, activation="sigmoid"),
-            Dense(units=15, activation="sigmoid"),
-            Dense(units=1, activation="sigmoid"),
+            Dense(units=25, activation="relu", name="L1"),
+            Dense(units=15, activation="relu", name="L2"),
+            Dense(units=10, activation="relu", name="L3"),
         ],
         name="my_model",
     )
@@ -47,3 +54,14 @@ def sigmoid(z):
 def numpy_dense_layer(a_input, W, b):
     z = np.matmul(a_input, W) + b
     return sigmoid(z)
+
+
+def softmax(z):
+    N = len(z)
+    a = np.zeros(N)
+    ez_sum = 0
+    for k in range(N):
+        ez_sum += np.exp(z[k])
+    for j in range(N):
+        a[j] = np.exp(z[j]) / ez_sum
+    return a
