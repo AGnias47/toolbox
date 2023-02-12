@@ -34,6 +34,11 @@ def keras_model():
     print(f"W1 shape = {W1.shape}, b1 shape = {b1.shape}")
     print(f"W2 shape = {W2.shape}, b2 shape = {b2.shape}")
     print(f"W3 shape = {W3.shape}, b3 shape = {b3.shape}")
+    model.compile(
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        optimizer=tf.keras.optimizers.Adam(0.01),
+    )
+    return model
 
 
 def sigmoid(z):
@@ -65,3 +70,11 @@ def softmax(z):
     for j in range(N):
         a[j] = np.exp(z[j]) / ez_sum
     return a
+
+
+def mse(y, y_hat):
+    m = len(y)
+    err = 0
+    for i in range(m):
+        err += (y_hat[i] - y[i]) ** 2
+    return err / (2 * m)
