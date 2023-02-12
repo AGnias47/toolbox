@@ -78,3 +78,5 @@ def mse(y, y_hat):
     for i in range(m):
         err += (y_hat[i] - y[i]) ** 2
     return err / (2 * m)
+
+
