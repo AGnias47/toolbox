@@ -1,32 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <limits>
-
-int partition(std::vector<int> &Q, int low, int high)
-{
-   int pivot = Q[low];
-   int start = low;
-   for (int i = low + 1; i <= high; i++)
-   {
-      if (Q[i] < pivot)
-      {
-         start++;
-         std::swap(Q[start], Q[i]);
-      }
-   }
-   std::swap(Q[start], Q[low]);
-   return start;
-}
-
-void quicksort(std::vector<int> &Q, int low, int high)
-{
-   if (low < high)
-   {
-      int p = partition(Q, low, high);
-      quicksort(Q, low, p - 1);
-      quicksort(Q, p + 1, high);
-   }
-}
+#include <vector>
 
 std::vector<int> insertion_sort(std::vector<int> V)
 {
@@ -85,6 +59,32 @@ void merge_sort(std::vector<int> &V, int p, int r)
       merge_sort(V, p, q);
       merge_sort(V, q + 1, r);
       merge(V, p, q, r);
+   }
+}
+
+int partition(std::vector<int> &Q, int low, int high)
+{
+   int pivot = Q[low];
+   int start = low;
+   for (int i = low + 1; i <= high; i++)
+   {
+      if (Q[i] < pivot)
+      {
+         start++;
+         std::swap(Q[start], Q[i]);
+      }
+   }
+   std::swap(Q[start], Q[low]);
+   return start;
+}
+
+void quicksort(std::vector<int> &Q, int low, int high)
+{
+   if (low < high)
+   {
+      int p = partition(Q, low, high);
+      quicksort(Q, low, p - 1);
+      quicksort(Q, p + 1, high);
    }
 }
 
