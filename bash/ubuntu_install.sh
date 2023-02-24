@@ -33,6 +33,23 @@ uidmap \
 jq \
 cmatrix
 
+# Common Python dependencies; taken from https://github.com/asdf-vm/asdf/issues/570#issuecomment-531187568
+sudo apt install -y \
+build-essential \
+libssl-dev \
+zlib1g-dev \
+libbz2-dev \
+libreadline-dev \
+libsqlite3-dev \
+llvm \
+libncurses5-dev \
+xz-utils \
+tk-dev \
+libxml2-dev \
+libxmlsec1-dev \
+libffi-dev \
+liblzma-dev
+
 # Configure git
 git config --global init.defaultBranch main
 
