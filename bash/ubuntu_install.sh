@@ -21,11 +21,9 @@ source ~/.bashrc
 
 # Install packages via apt
 sudo apt install -y \
+build-essential \
 vim \
 curl \
-make \
-gcc \
-g++ \
 python3-{dev,venv,pip} \
 openjdk-17-jdk-headless \
 ruby-full \
@@ -42,7 +40,6 @@ echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 
 # Common Python dependencies; taken from https://github.com/asdf-vm/asdf/issues/570#issuecomment-531187568
 sudo apt install -y \
-build-essential \
 libssl-dev \
 zlib1g-dev \
 libbz2-dev \
