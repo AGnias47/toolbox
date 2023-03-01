@@ -33,6 +33,13 @@ uidmap \
 jq \
 cmatrix
 
+# Install pyenv
+curl https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+
 # Common Python dependencies; taken from https://github.com/asdf-vm/asdf/issues/570#issuecomment-531187568
 sudo apt install -y \
 build-essential \
@@ -98,4 +105,3 @@ echo "Manual Steps to take"
 echo "- Setup ssh keys (ssh-keygen -t ed25519 -C <email>)"
 echo "- Install Dropbox"
 echo "- Confirm rootless Docker install"
-
