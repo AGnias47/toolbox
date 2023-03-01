@@ -80,6 +80,9 @@ sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt install -y code
 
+# Install LaTeX
+sudo apt install -y texlive-full biber
+
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
