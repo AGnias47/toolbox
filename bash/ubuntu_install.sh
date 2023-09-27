@@ -21,11 +21,9 @@ source ~/.bashrc
 
 # Install packages via apt
 sudo apt install -y \
+build-essential \
 vim \
 curl \
-make \
-gcc \
-g++ \
 python3-{dev,venv,pip} \
 openjdk-17-jdk-headless \
 ruby-full \
@@ -33,9 +31,15 @@ uidmap \
 jq \
 cmatrix
 
+# Install pyenv
+curl https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+
 # Common Python dependencies; taken from https://github.com/asdf-vm/asdf/issues/570#issuecomment-531187568
 sudo apt install -y \
-build-essential \
 libssl-dev \
 zlib1g-dev \
 libbz2-dev \
@@ -76,6 +80,9 @@ sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt install -y code
 
+# Install LaTeX
+sudo apt install -y texlive-full biber
+
 # Install Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -98,4 +105,3 @@ echo "Manual Steps to take"
 echo "- Setup ssh keys (ssh-keygen -t ed25519 -C <email>)"
 echo "- Install Dropbox"
 echo "- Confirm rootless Docker install"
-
