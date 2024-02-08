@@ -21,14 +21,14 @@ class Request:
         self.end = end
 
     def __repr__(self):
-        return f"Request: start {self.start}, end {self.end}"
+        return f"Request: start {self.start}, end {self.end}, duration {self.duration}"
 
     def __lt__(self, other):
         return self.end < other.end
 
     @property
     def duration(self):
-        return end - start
+        return self.end - self.start
 
     def compatible(self, r):
         return self.end <= r.start or self.start >= r.end
