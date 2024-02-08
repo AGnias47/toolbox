@@ -14,6 +14,7 @@ Return the set A as the set of accepted requests
 
 from typing import List, Set
 
+
 class Request:
     def __init__(self, start: int, end: int):
         self.start = start
@@ -32,6 +33,7 @@ class Request:
     def compatible(self, r):
         return self.end <= r.start or self.start >= r.end
 
+
 def schedule(R: Set) -> List:
     A = list()
     requests = sorted(list(R))
@@ -41,16 +43,13 @@ def schedule(R: Set) -> List:
     return A
 
 
-
-
 if __name__ == "__main__":
-    r1 = Request(1,10)
-    r2 = Request(3,5)
-    r3 = Request(6,8)
+    r1 = Request(1, 10)
+    r2 = Request(3, 5)
+    r3 = Request(6, 8)
     R = {r1, r2, r3}
     print("Requests")
     print(*sorted(list(R)), sep="\n")
     A = schedule(R)
     print("Scheduled Requests")
     print(*A, sep="\n")
-
