@@ -12,7 +12,7 @@ EndWhile
 Return the set A as the set of accepted requests
 """
 
-from typing import Set
+from typing import List, Set
 
 class Request:
     def __init__(self, start: int, end: int):
@@ -32,7 +32,7 @@ class Request:
     def compatible(self, r):
         return self.end <= r.start or self.start >= r.end
 
-def schedule(R: Set):
+def schedule(R: Set) -> List:
     A = list()
     requests = sorted(list(R))
     for r in requests:
