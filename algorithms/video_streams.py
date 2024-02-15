@@ -18,6 +18,7 @@ class Stream:
     def __lt__(self, o):
         return self.bit_rate < o.bit_rate
 
+
 def schedule(streams, r=5000):
     sorted_streams = sorted(streams)
     t = 0
@@ -28,7 +29,7 @@ def schedule(streams, r=5000):
             t += 1
             if b > r * t:
                 return []
-    return sorted_streams 
+    return sorted_streams
 
 
 s1 = Stream(2000, 1)
@@ -36,7 +37,3 @@ s2 = Stream(6000, 2)
 s3 = Stream(2000, 1)
 
 print(schedule([s1, s2, s3]))
-
-# n (calc bit_rate) + nlogn (sort) + (n + i)
-# algo is dominated by the sort
-# i is at minimum equal to n if each n has a time period of 1. Else it is greater so
