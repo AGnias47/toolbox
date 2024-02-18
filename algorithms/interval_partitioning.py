@@ -80,7 +80,8 @@ if __name__ == "__main__":
     r1 = Request(1, 10)
     r2 = Request(3, 5)
     r3 = Request(6, 8)
-    R = {r1, r2, r3}
+    r4 = Request(20, 30)
+    R = {r1, r2, r3, r4}
     print("Requests")
     print(*sorted(list(R)), sep="\n")
     A, d = schedule(R)
