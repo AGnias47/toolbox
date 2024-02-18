@@ -14,6 +14,18 @@ from bs4 import BeautifulSoup
 
 from movie import Movie
 
+
+def get_watchlist_json(url: str, script_index: int = 3) -> dict:
+    watchlist = (
+        BeautifulSoup(requests.get(url).text, "html.parser")
+        .find_all("script", type="text/javascript")[script_index]
+        .text
+    )
+    return json.loads(
+        watchlist.split("IMDbReactInitialState.push(")[1].strip().split(");")[0]
+    )
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-u", "--url", help="IMDb watchlist URL", required=True)
 parser.add_argument(
@@ -25,17 +37,11 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-watchlist = (
-    BeautifulSoup(requests.get(args.url).text, "html.parser")
-    .find_all("script", type="text/javascript")[4]
-    .text
-)
-watchlist_json = (
-    watchlist.split("IMDbReactInitialState.push(")[1].strip().split(");")[0]
-)
-data = json.loads(watchlist_json)
-movie_data = data["titles"]
-
+try:
+    watchlist_json = get_watchlist_json(args.url)
+except IndexError:
+    watchlist_json = get_watchlist_json(args.url, script_index=4)
+movie_data = watchlist_json["titles"]
 movies = list()
 for k, v in movie_data.items():
     movies.append(Movie(v))
