@@ -39,7 +39,7 @@ class Request:
         return self.end <= r.start or self.start >= r.end
 
 
-def schedule(R: Set[Request]) -> List[Request]:
+def schedule(R: Set[Request]) -> (List[Request], int):
     """
     Interval partitioning algorithm using greedy approach.
 
@@ -51,8 +51,8 @@ def schedule(R: Set[Request]) -> List[Request]:
 
     Returns
     -------
-    List
-        List of accepted requests
+    List, int
+        List of accepted requests, number of partitions used
     """
     A = list()
     I = sorted(list(R))
