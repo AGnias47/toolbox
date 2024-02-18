@@ -22,6 +22,7 @@ class Request:
     def __lt__(self, other):
         return self.deadline < other.deadline
 
+
 def schedule(R: Set) -> List:
     s = []
     start_time = 0
