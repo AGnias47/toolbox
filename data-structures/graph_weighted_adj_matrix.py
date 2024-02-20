@@ -389,7 +389,8 @@ class Graph:
 
     def dijkstra_ssp(self, s):
         """
-        Find the Single-source Shortest Path from vertex s to all other verticecs using Dijkstra's algorithm.
+        Find the Single-source Shortest Path from vertex s to all other vertices using
+        Dijkstra's algorithm.
 
         Args:
             s: int
