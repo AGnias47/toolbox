@@ -3,7 +3,7 @@
 
 def compute_opt(j, V, P, M):
     """
-    From p. 256 of Algorithm Design by J. Kleinberg and E. Tardos. Conmputes the
+    From p. 256 of Algorithm Design by J. Kleinberg and E. Tardos. Computes the
     max weight for weighted interval scheduling.
 
     Parameters
