@@ -11,8 +11,9 @@ M = [None] * (n + 1)
 def plan(n, next_job_high=False):
     if n == 1:
         if next_job_high:
-            return 0
-        M[n] = max(low_stress[n], high_stress[n])
+            M[n] = 0
+        else:
+            M[n] = max(low_stress[n], high_stress[n])
     elif not M[n]:
         if next_job_high:
             M[n] = 0 + plan(n - 1, False)
