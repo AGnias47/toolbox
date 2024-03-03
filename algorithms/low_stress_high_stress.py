@@ -4,6 +4,8 @@ SENTINEL = 0
 
 low_stress = [SENTINEL, 10, 1, 10, 10]
 high_stress = [SENTINEL, 5, 50, 5, 1]
+low_stress = [SENTINEL, 1, 10, 10]
+high_stress = [SENTINEL, 50, 30, 10]
 n = len(low_stress) - 1
 M = [None] * (n + 1)
 
