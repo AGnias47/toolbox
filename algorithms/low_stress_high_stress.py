@@ -16,7 +16,7 @@ def plan(n, next_job_high=False):
     elif not M[n]:
         if next_job_high:
             M[n] = 0 + plan(n - 1, False)
-        if low_stress[n] > high_stress[n]:
+        elif low_stress[n] > high_stress[n]:
             M[n] = low_stress[n] + plan(n - 1, False)
         else:
             M[n] = high_stress[n] + +plan(n - 1, True)
