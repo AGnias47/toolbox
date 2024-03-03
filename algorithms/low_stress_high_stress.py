@@ -13,18 +13,16 @@ def plan(n, next_job_high=False):
         if next_job_high:
             return 0
         M[n] = max(low_stress[n], high_stress[n])
-        return M[n]
-    if next_job_high:
-        return 0 + plan(n - 1, False)
-    if M[n]:
-        return M[n]
-    if low_stress[n] > high_stress[n]:
-        M[n] = low_stress[n] + plan(n - 1, False)
-    else:
-        M[n] = high_stress[n] + +plan(n - 1, True)
+    elif not M[n]:
+        if next_job_high:
+            M[n] = 0 + plan(n - 1, False)
+        if low_stress[n] > high_stress[n]:
+            M[n] = low_stress[n] + plan(n - 1, False)
+        else:
+            M[n] = high_stress[n] + +plan(n - 1, True)
     return M[n]
 
 
 if __name__ == "__main__":
     print(plan(n))
-    print(M)
+    print(M[1:])
