@@ -32,19 +32,6 @@ def emp_planner(robot_arrivals, emp_start=1):
     return robots_destroyed
 
 
-def we_can_pseudo_work_with_this(n, robot_arrivals, M=None):
-    W = len(robot_arrivals[1:])
-    if not M:
-        M = [[0 for _ in range(W + 1)] for _ in range(n + 1)]
-    for i in range(1, n):
-        for w in range(W + 1):
-            destroyed = destroy_robots(robot_arrivals[i], i)
-            if destroyed > emp_planner(n+1, robot_arrivals[i:], M):
-                M[i][w] = destroyed
-            else:
-                M[i][w] = M[i - 1][w]
-    return M[n][W]
-
 def bad_emp_planner(robot_arrivals):
     n = len(robot_arrivals[1:])
     j = 1
