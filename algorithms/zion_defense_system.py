@@ -11,19 +11,24 @@ def destroy_robots(x, j):
     return min(x, emp(j))
 
 
-def emp_planner(robot_arrivals):
+def emp_planner(robot_arrivals, emp_start=1):
     n = len(robot_arrivals[1:])
     if n == 1:
-        return destroy_robots(robot_arrivals[1], 1)
-    j = 0
+        return destroy_robots(robot_arrivals[1], emp_start)
+    j = 1
     while j < n:
-        if destroy_robots(robot_arrivals[j+1], j) <= robot_arrivals[j+1]:
+        s1 = destroy_robots(robot_arrivals[j], emp_start) + emp_planner(
+            [SENTINEL] + (robot_arrivals[j + 1 :])
+        )
+        s2 = emp_planner([SENTINEL] + (robot_arrivals[j + 1 :]), emp_start + 1)
+        if s2 > s1:
             j += 1
-    print(j)
-    robots_destroyed = destroy_robots(robot_arrivals[j], j)
+            emp_start += 1
+        else:
+            break
+    robots_destroyed = destroy_robots(robot_arrivals[j], emp_start)
     if j < n:
-        print(robot_arrivals[j :])
-        robots_destroyed += destroy_robots([SENTINEL].extend(robot_arrivals[j :]))
+        robots_destroyed += emp_planner([SENTINEL] + (robot_arrivals[j + 1 :]))
     return robots_destroyed
 
 
@@ -47,5 +52,5 @@ if __name__ == "__main__":
     s1 = [SENTINEL, 1, 10, 10, 1]  # 5
     s2 = [SENTINEL, 1, 1, 4, 2]  # 5
     for robot_schedule in [s1, s2]:
-        #print(bad_emp_planner(robot_schedule))
+        print(bad_emp_planner(robot_schedule))
         print(emp_planner(robot_schedule))
