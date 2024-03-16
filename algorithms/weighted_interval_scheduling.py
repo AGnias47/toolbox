@@ -29,6 +29,49 @@ def compute_opt(j, V, P, M):
     return M[j]
 
 
+def compute_opt_max_k(j, V, P, job_count, max_jobs, M):
+    """
+    Does the same thing as compute_opt, but includes a parameter for the maximum numbrer of jobs
+    that can be selected.
+
+    Parameters
+    ----------
+        j: int
+        Index of interval
+    V: list
+        Array of weights for each interval, with index 0 being a sentinel value
+    P: list
+        Array pointing to the closest previous index that is disjoint with the current interval.
+        If none exists, the value is 0.
+    job_count: int
+        Number of jobs selected. Initialize with 0
+    max_jobs: int
+        Max number of jobs that can be selected
+    M: list
+        Memoization array
+
+    Returns
+    -------
+    int
+    """
+    if j == 0:
+        return 0
+    if M[j][job_count] == 0:
+        if job_count + 1 == max_jobs:
+            previous_job = compute_opt_max_k(j - 1, V, P, job_count, max_jobs, M)
+            if V[j] > previous_job:
+                job_count += 1
+                M[j][job_count] = V[j]
+            else:
+                M[j][job_count] = previous_job
+        else:
+            M[j][job_count] = max(
+                V[j] + compute_opt_max_k(P[j], V, P, job_count + 1, max_jobs, M),
+                compute_opt_max_k(j - 1, V, P, job_count, max_jobs, M),
+            )
+    return M[j][job_count]
+
+
 def find_solution(j, V, P, M):
     """
     From p. 258 of Algorithm Design by J. Kleinberg and E. Tardos.
@@ -60,10 +103,20 @@ def find_solution(j, V, P, M):
 
 
 if __name__ == "__main__":
-    V = [0, 2, 4, 4, 7, 2, 1]
-    P = [0, 0, 0, 1, 0, 3, 3]
+    SENTINEL = 0
+    V = [SENTINEL, 2, 4, 4, 7, 2, 1]
+    P = [SENTINEL, 0, 0, 1, 0, 3, 3]
     n = len(V) - 1
     M = [0] * (n + 1)
     max_weight = compute_opt(n, V, P, M)
     schedule_indexes = find_solution(n, V, P, M)
     print(f"Schedule {schedule_indexes} has a max weight of {max_weight}")
+    for V, P in [
+        ([SENTINEL, 5, 7, 5], [SENTINEL, 0, 0, 1]),
+        ([SENTINEL, 5, 7, 5, 7, 5], [SENTINEL, 0, 0, 1, 2, 3]),
+    ]:
+        for k in range(1, 4):
+            n = len(V) - 1
+            M = [[0 for _ in range(k + 1)] for _ in range(n + 1)]
+            max_weight = compute_opt_max_k(n, V, P, 0, k, M)
+            print(f"Schedule has a max weight of {max_weight}")
