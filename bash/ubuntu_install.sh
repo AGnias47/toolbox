@@ -80,22 +80,6 @@ sudo apt install -y apt-transport-https
 sudo apt update
 sudo apt install -y code
 
-# Install LaTeX
-sudo apt install -y texlive-full biber
-
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo groupadd docker || true
-sudo usermod -aG docker $USER
-newgrp docker
-echo 'export DOCKER_HOST=unix:///run/user/1000/docker.sock' >> ~/.bash_profile
-source ~/.bashrc
-rm get-docker.sh
-
-# Install mdless markdown formatter
-sudo gem install mdless
-
 # Install and run aptupdate script
 sudo wget -P /usr/local/bin https://raw.githubusercontent.com/AGnias47/toolbox/main/utilities/aptupdate
 sudo chmod 755 /usr/local/bin/aptupdate
